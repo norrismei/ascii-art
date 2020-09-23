@@ -10,10 +10,11 @@ def add_shape():
     pass
 
 
-def print_canvas():
+def print_canvas(canvas):
     """Print 10 char x 10 char canvas with any shapes"""
 
-    pass
+    for row in canvas:
+        print("".join(row))
 
 
 def clear_canvas():
@@ -37,3 +38,5 @@ def move_rectangle():
 rectangles = {}
 empty_row = [" "] * 10
 canvas = [empty_row] * 10
+
+print_canvas(canvas)
