@@ -6,7 +6,20 @@ def create_canvas():
 
     return canvas
 
+
+def show_option_menu():
+    """Prints actions that user can take"""
+
+    print("""
+What would you like to do?
+1) Draw a rectangle
+2) Clear canvas
+        """)
+
+
 def create_rect(char):
+    """Creates a string representing rectangle with character as fill"""
+
     rect = ""
 
     for y in range(3):
@@ -16,18 +29,32 @@ def create_rect(char):
 
     return rect
 
-def draw_rectangle(rect):
+
+def display_rectangle(rect):
+    """Takes in string and draws text on canvas"""
     canvas.create_text(50, 25, text=rect)
 
-master = Tk()
 
-canvas = create_canvas()
-
-draw = input("Would you like to draw a rectangle? y/n ")
-
-if draw == "y":
+def draw_rectangle():
+    """Asks user for char to use as rectangle fill and displays result"""
     char = input("Enter a character: ")
     rect = create_rect(char)
-    draw_rectangle(rect)
+    display_rectangle(rect)
 
+
+# Create the GUI window and canvas
+master = Tk()
+canvas = create_canvas()
+
+while True:
+    show_option_menu()
+    choice = input("Enter the number of your choice: ")
+
+    if choice == "1":
+        draw_rectangle()
+    elif choice == "2":
+        canvas.delete(ALL)
+
+
+# Keeps the window open
 mainloop()
