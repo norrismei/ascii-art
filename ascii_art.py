@@ -1,60 +1,39 @@
-from tkinter import *
+def create_rectangle():
+    """Create rectangle with given attributes for size, position, and fill"""
 
-def create_canvas():
-    canvas = Canvas(master, width=600, height=300)
-    canvas.pack()
-
-    return canvas
+    pass
 
 
-def show_option_menu():
-    """Prints actions that user can take"""
+def add_shape():
+    """Add a shape. For now, assume rectangle is only shape"""
 
-    print("""
-What would you like to do?
-1) Draw a rectangle
-2) Clear canvas
-        """)
+    pass
 
 
-def create_rect(char):
-    """Creates a string representing rectangle with character as fill"""
+def print_canvas():
+    """Print 10 char x 10 char canvas with any shapes"""
 
-    rect = ""
-
-    for y in range(3):
-        for x in range(5):
-            rect += char
-        rect += "\n"
-
-    return rect
+    pass
 
 
-def display_rectangle(rect):
-    """Takes in string and draws text on canvas"""
-    canvas.create_text(50, 25, text=rect)
+def clear_canvas():
+    """Delete all shapes from canvas"""
+
+    pass
 
 
-def draw_rectangle():
-    """Asks user for char to use as rectangle fill and displays result"""
-    char = input("Enter a character: ")
-    rect = create_rect(char)
-    display_rectangle(rect)
+def change_rect_fill():
+    """Change fill of existing rectangle"""
+
+    pass
 
 
-# Create the GUI window and canvas
-master = Tk()
-canvas = create_canvas()
+def move_rectangle():
+    """Move rectangle along x- or y-axis, in positive or negative direction"""
 
-while True:
-    show_option_menu()
-    choice = input("Enter the number of your choice: ")
-
-    if choice == "1":
-        draw_rectangle()
-    elif choice == "2":
-        canvas.delete(ALL)
+    pass
 
 
-# Keeps the window open
-mainloop()
+rectangles = {}
+empty_row = [" "] * 10
+canvas = [empty_row] * 10
