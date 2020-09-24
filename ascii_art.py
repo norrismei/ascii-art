@@ -52,8 +52,8 @@ def get_fill_instructions(start_x, start_y, end_x, end_y):
     return fill_matrix
 
 
-def update_rect_dict(rectangles, fill_matrix, fill_char):
-    """Update dictionary with rectangle drawn"""
+def add_rect_to_dict(rectangles, fill_matrix, fill_char):
+    """Add rectangle to rectangles dict"""
 
     id = len(rectangles) + 1
 
@@ -82,7 +82,7 @@ def add_shape(canvas, rectangles):
 
     start_x, start_y, end_x, end_y, fill_char = get_attributes()
     fill_matrix = get_fill_instructions(start_x, start_y, end_x, end_y)
-    rectangles = update_rect_dict(rectangles, fill_matrix, fill_char)
+    rectangles = add_rect_to_dict(rectangles, fill_matrix, fill_char)
     canvas = update_canvas(canvas, rectangles)
     print_canvas(canvas)
 
@@ -114,11 +114,28 @@ def clear_canvas():
     return canvas, rectangles
 
 
-def change_rect_fill():
+def select_rectangle(rectangles):
+    """Display list of rectangles and return user choice"""
+
+    for rectangle, attributes in rectangles.items():
+        num = rectangle
+        fill_char = attributes[0]
+        print(f"{num}) {fill_char}")
+
+    choice = int(input("Enter number of a rectangle: "))
+
+    return choice
+
+
+def change_rect_fill(canvas, rectangles):
     """Change fill of existing rectangle"""
 
-    pass
-
+    rectangle = select_rectangle(rectangles)
+    fill_char = input("Enter a new character: ")
+    rectangles[rectangle][0] = fill_char
+    canvas = update_canvas(canvas, rectangles)
+    print_canvas(canvas)
+    
 
 def move_rectangle():
     """Move rectangle along x- or y-axis, in positive or negative direction"""
@@ -133,6 +150,8 @@ def main():
 
         if action == "1":
             add_shape(canvas, rectangles)
+        elif action == "3":
+            change_rect_fill(canvas, rectangles)
         elif action == "4":
             canvas, rectangles = clear_canvas()
             print_canvas(canvas)
