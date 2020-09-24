@@ -30,16 +30,48 @@ def get_attributes():
     return start_x, start_y, end_x, end_y, fill_char
 
 
-def create_rectangle():
-    """Create rectangle with given attributes for size, position, and fill"""
+def get_fill_instructions(start_x, start_y, end_x, end_y):
+    """Returns a matrix where True represents a part of the rectangle"""
 
-    pass
+    fill_matrix = [
+    [False, False, False, False, False, False, False, False, False, False],
+    [False, False, False, False, False, False, False, False, False, False],
+    [False, False, False, False, False, False, False, False, False, False],
+    [False, False, False, False, False, False, False, False, False, False],
+    [False, False, False, False, False, False, False, False, False, False],
+    [False, False, False, False, False, False, False, False, False, False],
+    [False, False, False, False, False, False, False, False, False, False],
+    [False, False, False, False, False, False, False, False, False, False],
+    [False, False, False, False, False, False, False, False, False, False],
+    [False, False, False, False, False, False, False, False, False, False]]
+
+    for y in range(start_y, end_y + 1):
+        print(f"y: {y}")
+        for x in range(start_x, end_x + 1):
+            print(f"x: {x}")
+            fill_matrix[y][x] = True
+
+    return fill_matrix
 
 
-def add_shape():
+def update_canvas(canvas, fill_matrix, fill_char):
+    """Using fill_matrix instructions, update canvas with fill_char"""
+
+    for matrix_row, canvas_row in zip(fill_matrix, canvas):
+        for i in range(10):
+            if matrix_row[i] == True:
+                canvas_row[i] = fill_char
+
+    return canvas
+
+
+def add_shape(canvas):
     """Add a shape. For now, assume rectangle is only shape"""
 
     start_x, start_y, end_x, end_y, fill_char = get_attributes()
+    fill_matrix = get_fill_instructions(start_x, start_y, end_x, end_y)
+    updated_canvas = update_canvas(canvas, fill_matrix, fill_char)
+    print_canvas(updated_canvas)
 
 
 def print_canvas(canvas):
@@ -68,15 +100,24 @@ def move_rectangle():
 
 def main():
     rectangles = {}
-    empty_row = [" "] * 10
-    canvas = [empty_row] * 10
+    canvas = [
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
+    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "]]
 
-    action = select_action()
+    while True:
+        action = select_action()
 
-    if action == "1":
-        add_shape()
+        if action == "1":
+            add_shape(canvas)
 
-    # print_canvas(canvas)
 
 if __name__ == '__main__':
     main()
