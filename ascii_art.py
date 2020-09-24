@@ -33,17 +33,7 @@ def get_attributes():
 def get_fill_instructions(start_x, start_y, end_x, end_y):
     """Returns a matrix where True represents a part of the rectangle"""
 
-    fill_matrix = [
-    [False, False, False, False, False, False, False, False, False, False],
-    [False, False, False, False, False, False, False, False, False, False],
-    [False, False, False, False, False, False, False, False, False, False],
-    [False, False, False, False, False, False, False, False, False, False],
-    [False, False, False, False, False, False, False, False, False, False],
-    [False, False, False, False, False, False, False, False, False, False],
-    [False, False, False, False, False, False, False, False, False, False],
-    [False, False, False, False, False, False, False, False, False, False],
-    [False, False, False, False, False, False, False, False, False, False],
-    [False, False, False, False, False, False, False, False, False, False]]
+    fill_matrix = [[False] * 10 for i in range(10)]
 
     for y in range(start_y, end_y + 1):
         for x in range(start_x, end_x + 1):
@@ -104,17 +94,8 @@ def print_canvas(canvas):
 def clear_canvas():
     """Returns canvas with no shapes"""
 
-    canvas = [
-    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-    [" ", " ", " ", " ", " ", " ", " ", " ", " ", " "]]
+    #Create a blank 10x10 char matrix. 
+    canvas = [[" "] * 10 for i in range(10)]
 
     return canvas
 
